@@ -1,0 +1,6 @@
+1. Write the smart contract 
+2. Created deploye.js file
+3. npm install solc 
+4. Run the command ```solcjs --bin --abi --include-path  node_modules/ --base-path . -o . SimpleStorage.sol```
+5. Now go to the package.json file and create a new command for complie and add the above command in that.
+6. Run the command npm run complie
