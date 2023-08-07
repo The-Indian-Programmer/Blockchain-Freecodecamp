@@ -1,0 +1,7 @@
+1. Install hardhat using ```npm install --save-dev hardhat```
+2. Create a simple project using ```npx hardhat```
+3. Choose the create a basic simple project option
+4. Write your contract in the contracts folder
+5. Write your test in the test folder
+6. Run your test using ```npx hardhat test```
+7. Write the deployment script in the scripts folder
