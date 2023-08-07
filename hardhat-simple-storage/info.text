@@ -5,3 +5,8 @@
 5. Write your test in the test folder
 6. Run your test using ```npx hardhat test```
 7. Write the deployment script in the scripts folder
+8. Practice the command ```npx hardhat console```
+9. Practice the command ```npx hardhat node```
+10. ```npx hardhat run scripts/deploy.js --network hardhat-node```
+11. ```npx hardhat run scripts/deploy.js --network localhost```
+12. Add tasks for the hardhat in tasks folder when we run the command ```npx hardhat``` it will show us in the list.
