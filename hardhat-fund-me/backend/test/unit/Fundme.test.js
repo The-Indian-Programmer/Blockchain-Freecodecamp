@@ -1,23 +1,28 @@
-const {assert, expect} = require('chai');
-const {deployments, ethers, getNamedAccounts} = require('hardhat');
+const { assert, expect } = require('chai');
+const { deployments, ethers, getNamedAccounts } = require('hardhat');
+const { developmentChains } = require('../../helper-hardhat-config');
 
-describe('FundMe', function () {
-    let fundMe;
-    let deployer;
-    let mockV3Aggregator;
-    beforeEach(async function () {
+!developmentChains.includes(network.name)
+    ? describe.skip
+    : describe('FundMe', function () {
+    let fundMe
+          let mockV3Aggregator
+          let deployer
+          const sendValue = ethers.utils.parseEther("1")
+          beforeEach(async () => {
+              // const accounts = await ethers.getSigners()
+              // deployer = accounts[0]
               deployer = (await getNamedAccounts()).deployer
               await deployments.fixture(["all"])
               fundMe = await ethers.getContractAt("FundMe", deployer)
-              mockV3Aggregator = await ethers.getContractAt("MockV3Aggregator",deployer)
+              mockV3Aggregator = await ethers.getContractAt("MockV3Aggregator", deployer)
+              console.log(fundMe.address)
+          })
 
-    })
-
-    describe('Constructor', function () {
-        it("Should set the price feed address", async function () {
-            const response = await fundMe.getPriceFeed();
-            console.log(response);
-            // assert.equal(response , mockV3Aggregator.address);
-        })
-    })
+          describe("constructor", function () {
+              it("sets the aggregator addresses correctly", async () => {
+                  const response = await fundMe.s_priceFeed()
+                //   assert.equal(response, mockV3Aggregator.address)
+              })
+          })
 })

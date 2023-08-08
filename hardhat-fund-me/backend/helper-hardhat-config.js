@@ -4,8 +4,8 @@ const networkConfig = {
         priceFeed: "",
     },
     11155111: {
-        name: "sepolia test network",
-        priceFeed: "0x1a81afB8146aeFfCFc5E50e8479e826E7D55b910",
+        name: "sepolia",
+        ethUsdPriceFeed: "0x694AA1769357215DE4FAC081bf1f309aDC325306",
     },
     1337: { // ganache local network
         name: "localhost",
@@ -19,8 +19,8 @@ const networkConfig = {
 };
 
 const developmentChains = ["hardhat", "localhost"];
-const DECIMALS = 8;
-const INITIAL_ANSWERS = 20000000000;
+const DECIMALS = "8";
+const INITIAL_ANSWERS = "20000000000";
 
 module.exports = {
     networkConfig,

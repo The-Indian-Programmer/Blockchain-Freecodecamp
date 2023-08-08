@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hardhat FundMe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"
+        integrity="sha512-bLwLr3lzJN1cvtbClBMhKDyaD0uocWmphiqO8v0w3/z/XqUwzkM00gZq7BV3dQS9mQu0rarZMTsxlcnIHszElA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="d-flex align-items-start justify-content-between">
+            <div>
+                <button class="btn btn-primary">Get Contract Balance</button>
+                <p class="text-dark mt-2">0.1 ETH</p>
+            </div>
+            <button id="connectButton" class="btn btn-primary">Connect Wallet</button>
+        </div>
+
+        <hr>
+        <h1 class="mb-3">Hardhat FundMe</h1>
+        <p>Let's get some funding!</p>
+        <form action="">
+            <div class="mb-3">
+                <label for="amount" class="form-label">Amount</label>
+                <input type="number" class="form-control" id="amount">
+            </div>
+            <button type="submit" class="btn btn-primary">Fund!</button>
+    </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+    <script src="./index.js" type="module"></script>
+
+
+</html>

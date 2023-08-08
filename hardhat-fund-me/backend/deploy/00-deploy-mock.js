@@ -1,27 +1,20 @@
-const { network } = require("hardhat");
-const { developmentChains, networkConfig, DECIMALS, INITIAL_ANSWERS } = require("../helper-hardhat-config");
+const { network } = require("hardhat")
 
+const DECIMALS = "8"
+const INITIAL_PRICE = "200000000000" // 2000
 module.exports = async ({ getNamedAccounts, deployments }) => {
-    const { deploy, log } = deployments;
-    const { deployer } = await getNamedAccounts();
-    const chainId = network.config.chainId;
-
-    const networkName = networkConfig[chainId]["name"];
-
-
-    if (developmentChains.includes(networkName)) {
-        log("Mock deploy, Local network detected, skipping deployment");
-        // const MockV3Aggregator = await deployments.get("MockV3Aggregator");
+    const { deploy, log } = deployments
+    const { deployer } = await getNamedAccounts()
+    const chainId = network.config.chainId
+    // If we are on a local development network, we need to deploy mocks!
+    if (chainId == 31337) {
+        log("Local network detected! Deploying mocks...")
         await deploy("MockV3Aggregator", {
             contract: "MockV3Aggregator",
             from: deployer,
-            args: [DECIMALS, INITIAL_ANSWERS],
             log: true,
-        });
-        log("----------------------------------------------------------");
+            args: [DECIMALS, INITIAL_PRICE],
+        })
     }
-    
 }
-
-
-module.exports.tags = ["all", "mocks"];
+module.exports.tags = ["all", "mocks"]

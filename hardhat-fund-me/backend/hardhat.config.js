@@ -1,14 +1,13 @@
 require("@nomiclabs/hardhat-waffle")
-require("@nomiclabs/hardhat-etherscan")
-require("hardhat-deploy")
-require("solidity-coverage")
 require("hardhat-gas-reporter")
-require("hardhat-contract-sizer")
+require("@nomiclabs/hardhat-etherscan")
 require("dotenv").config()
+require("solidity-coverage")
+require("hardhat-deploy")
 
 /** @type import('hardhat/config').HardhatUserConfig */
 
-let {LOCALHOST_PRIVATE_KEY, LOCALHOST_RPC_URL, SEPOLIA_RPC_URL, PRIVATE_KEY, PRIVATE_KEY_PASSWORD, ETHERSCAN_API_KEY, COINMARKETCAP_API_KEY} = process.env;
+let { LOCALHOST_PRIVATE_KEY, LOCALHOST_RPC_URL, SEPOLIA_RPC_URL, PRIVATE_KEY, PRIVATE_KEY_PASSWORD, ETHERSCAN_API_KEY, COINMARKETCAP_API_KEY } = process.env;
 module.exports = {
   defaultNetwork: "hardhat",
   // solidity: "0.8.7",
@@ -34,22 +33,22 @@ module.exports = {
     timeout: 500000,
   },
   networks: {
-    "localhost":{
+    "hardhat": {
+      chainId: 31337,
+      // gasPrice: 130000000000,
+    },
+    "localhost": {
       chainId: 1337,
       url: LOCALHOST_RPC_URL,
       accounts: [LOCALHOST_PRIVATE_KEY],
     },
-    "sepolia" : {
+    "sepolia": {
       chainId: 11155111,
       url: SEPOLIA_RPC_URL,
       accounts: [PRIVATE_KEY],
       blockConfirmations: 6,
     },
-    "hardhat-node" : {
-      chainId: 31337,
-      url: "http://localhost:8545",
-    }
-  },  
+  },
   etherscan: {
     apiKey: ETHERSCAN_API_KEY,
   },
