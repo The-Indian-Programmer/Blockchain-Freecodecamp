@@ -95,7 +95,7 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
         return (upkeepNeeded, bytes(""));
     }
 
-    function performUpkeep(bytes calldata /*performData */) external override {
+    function performUpkeep(bytes memory /*performData */) external override {
         
         // // check if the checkUpkeep function returns true
         // if (checkUpkeep(bytes("")) == false) return;
@@ -111,9 +111,8 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
             i_subscriptionId,
             REQUEST_CONFIRMATIONS,
             i_callbackGasLimit,
-            NUM_WORDS //
+            NUM_WORDS 
         );
-        s_raffleState = RaffleState.OPEN;
         i_participants = new address payable[](0);
         emit Raffle_RequestedRandomWinner(requestId);
     }
@@ -125,6 +124,7 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
         address payable recentWinner = i_participants[winnerIndex];
         s_recentWinner = recentWinner;
         s_lastTimeStamp = block.timestamp;
+        s_raffleState = RaffleState.OPEN;
 
 
         (bool success, ) = recentWinner.call{value: address(this).balance}("");
@@ -191,5 +191,25 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
     // function to get next time trigger
     function getNextTimeTrigger() external view returns (uint256) {
         return s_lastTimeStamp + i_timeInterval;
+    }
+
+    // function to get the subscription id
+    function getSubscriptionId() external view returns (uint64) {
+        return i_subscriptionId;
+    }
+
+    // function to get the callback gas limit
+    function getCallbackGasLimit() external view returns (uint32) {
+        return i_callbackGasLimit;
+    }
+
+    // function to get the gan lane
+    function getGanLane() external view returns (bytes32) {
+        return i_ganLane;
+    }
+
+    // function to get the vrf coordinator
+    function getVrfCoordinator() external view returns (address) {
+        return address(i_vrfCoordinatorV2);
     }
 }

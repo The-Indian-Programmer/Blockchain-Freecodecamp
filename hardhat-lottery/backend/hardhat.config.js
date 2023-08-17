@@ -33,17 +33,21 @@ module.exports = {
   },
   namedAccounts: {
     deployer: {
-      default: 0,
-      1: 0,
+        default: 0, // here this will by default take the first account as deployer
+        1: 0, // similarly on mainnet it will take the first account as deployer. Note though that depending on how hardhat network are configured, the account 0 on one network can be different than on another
     },
-    player2: {
-      default: 1,
+    player: {
+        default: 1,
     },
-    player2: {
-      default: 2,
-    },
-  },
+},
   etherscan: {
     apiKey: ETHERSCAN_API_KEY,
   },
+  gasReporter: {
+    enabled: true,
+    currency: 'USD',
+    noColors: true,
+    outputFile: 'gas-report.txt',
+
+  }
 };
