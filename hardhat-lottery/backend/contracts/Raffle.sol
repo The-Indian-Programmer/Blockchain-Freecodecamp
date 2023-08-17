@@ -1,12 +1,3 @@
-/* 
-1. Entre the raffle by paying some amount 
-    a. 1 ticket = 0.01 ETH
-    b. 1 person can buy 1 ticket 
-    
-
-2. Pick a winner
-3. Winner to be selected every minutes (Automatically by chainlink) 
-*/
 
 // SPDX-License-Identifier: MIT
 
@@ -27,7 +18,15 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
         OPEN,
         CALCULATING
     }
+/* 
+1. Entre the raffle by paying some amount 
+    a. 1 ticket = 0.01 ETH
+    b. 1 person can buy 1 ticket 
+    
 
+2. Pick a winner
+3. Winner to be selected every minutes (Automatically by chainlink) 
+*/
     /* State Variables */
     uint256 private immutable i_enteraneFee;
     address payable[] private i_participants;
@@ -188,4 +187,9 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
     function getNumWords() external pure returns (uint32) {
         return NUM_WORDS;
     } 
+
+    // function to get next time trigger
+    function getNextTimeTrigger() external view returns (uint256) {
+        return s_lastTimeStamp + i_timeInterval;
+    }
 }

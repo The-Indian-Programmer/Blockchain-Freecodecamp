@@ -1,10 +1,12 @@
-require("@nomiclabs/hardhat-etherscan");
-require("@nomiclabs/hardhat-waffle");
-require("hardhat-deploy");
-require("solidity-coverage");
-require("hardhat-gas-reporter");
-require("hardhat-contract-sizer");
-require("dotenv").config();
+require("@nomiclabs/hardhat-waffle")
+require("@nomiclabs/hardhat-etherscan")
+require("hardhat-deploy")
+require("solidity-coverage")
+require("hardhat-gas-reporter")
+require("hardhat-contract-sizer")
+require("dotenv").config()
+
+
 
 
 let { LOCALHOST_PRIVATE_KEY, LOCALHOST_RPC_URL, SEPOLIA_RPC_URL, PRIVATE_KEY, PRIVATE_KEY_PASSWORD, ETHERSCAN_API_KEY, COINMARKETCAP_API_KEY } = process.env;
@@ -32,6 +34,7 @@ module.exports = {
   namedAccounts: {
     deployer: {
       default: 0,
+      1: 0,
     },
     player2: {
       default: 1,
@@ -39,5 +42,8 @@ module.exports = {
     player2: {
       default: 2,
     },
-  }
+  },
+  etherscan: {
+    apiKey: ETHERSCAN_API_KEY,
+  },
 };
