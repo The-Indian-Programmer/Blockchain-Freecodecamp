@@ -1,7 +1,6 @@
 /* 
 1. Entre the raffle by paying some amount 
     a. 1 ticket = 0.01 ETH
-    b. 1 person can buy 1 ticket 
     
 
 2. Pick a winner
