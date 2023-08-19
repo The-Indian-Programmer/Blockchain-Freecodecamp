@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/home/sumit/Documents/personal-projects/Blockchain-Freecodecamp/hardhat-lottery/backend/contracts/Raffle.sol": {
-      "lastModificationDate": 1692306940223,
-      "contentHash": "575f11463e79a81d0eaf752d2fed70b0",
+      "lastModificationDate": 1692425998841,
+      "contentHash": "d02c957e8776bf332fc7ee04b8396321",
       "sourceName": "contracts/Raffle.sol",
       "solcConfig": {
         "version": "0.8.7",
@@ -38,7 +38,8 @@
       "imports": [
         "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol",
         "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol",
-        "@chainlink/contracts/src/v0.8/interfaces/KeeperCompatibleInterface.sol"
+        "@chainlink/contracts/src/v0.8/interfaces/AutomationCompatibleInterface.sol",
+        "hardhat/console.sol"
       ],
       "versionPragmas": [
         "^0.8.7"
@@ -174,8 +175,8 @@
       "artifacts": []
     },
     "/home/sumit/Documents/personal-projects/Blockchain-Freecodecamp/hardhat-lottery/backend/node_modules/@chainlink/contracts/src/v0.8/mocks/VRFCoordinatorV2Mock.sol": {
-      "lastModificationDate": 1692304828175,
-      "contentHash": "a78f72f6c18077e727bc06d7f96b2031",
+      "lastModificationDate": 1692416995754,
+      "contentHash": "8c2a460db76c4284a1b7225e34bff7c3",
       "sourceName": "@chainlink/contracts/src/v0.8/mocks/VRFCoordinatorV2Mock.sol",
       "solcConfig": {
         "version": "0.8.7",
@@ -261,48 +262,6 @@
         "LinkTokenInterface"
       ]
     },
-    "/home/sumit/Documents/personal-projects/Blockchain-Freecodecamp/hardhat-lottery/backend/contracts/mocks/VRFCoordinatorV2Mock.sol": {
-      "lastModificationDate": 1692304853967,
-      "contentHash": "3a5883c6e9cf52a6ee952e5ceac6dd46",
-      "sourceName": "contracts/mocks/VRFCoordinatorV2Mock.sol",
-      "solcConfig": {
-        "version": "0.8.7",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "devdoc",
-                "userdoc",
-                "storageLayout",
-                "evm.gasEstimates"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          },
-          "metadata": {
-            "useLiteralContent": true
-          }
-        }
-      },
-      "imports": [
-        "@chainlink/contracts/src/v0.8/mocks/VRFCoordinatorV2Mock.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.7"
-      ],
-      "artifacts": []
-    },
     "/home/sumit/Documents/personal-projects/Blockchain-Freecodecamp/hardhat-lottery/backend/node_modules/@chainlink/contracts/src/v0.8/interfaces/AutomationCompatibleInterface.sol": {
       "lastModificationDate": 1692304828159,
       "contentHash": "c52969cee392918edbf23f914e01c0dc",
@@ -344,6 +303,90 @@
       "artifacts": [
         "AutomationCompatibleInterface"
       ]
+    },
+    "/home/sumit/Documents/personal-projects/Blockchain-Freecodecamp/hardhat-lottery/backend/node_modules/hardhat/console.sol": {
+      "lastModificationDate": 1692289809195,
+      "contentHash": "896f68942c3a20e9ae3c3c5bfd3add54",
+      "sourceName": "hardhat/console.sol",
+      "solcConfig": {
+        "version": "0.8.7",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.4.22 <0.9.0"
+      ],
+      "artifacts": [
+        "console"
+      ]
+    },
+    "/home/sumit/Documents/personal-projects/Blockchain-Freecodecamp/hardhat-lottery/backend/contracts/test/VRFCoordinatorV2Mock.sol": {
+      "lastModificationDate": 1692416927317,
+      "contentHash": "3a5883c6e9cf52a6ee952e5ceac6dd46",
+      "sourceName": "contracts/test/VRFCoordinatorV2Mock.sol",
+      "solcConfig": {
+        "version": "0.8.7",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "@chainlink/contracts/src/v0.8/mocks/VRFCoordinatorV2Mock.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.7"
+      ],
+      "artifacts": []
     }
   }
 }
