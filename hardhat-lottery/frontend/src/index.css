@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Encode+Sans+Semi+Condensed:wght@100;300;700&family=Great+Vibes&display=swap');
+
+body {
+  /* font-family: 'Dancing Script', cursive; */
+}
+
+.homepage {
+  font-family: 'Encode Sans Semi Condensed', sans-serif;
+}
+
+button {
+  font-family: 'Encode Sans Semi Condensed', sans-serif;
+}
+
