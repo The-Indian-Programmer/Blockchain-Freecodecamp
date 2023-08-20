@@ -41,5 +41,5 @@ export function useWallet() {
         }
     }, []);
 
-    return { isConnected, connection: provider ? provider.connection ? provider.connection.url : null : null, chainId, address };
+    return { isConnected, connection: provider ? provider.connection ? provider.connection.url : null : null, chainId, address , contractProvider: provider};
 }

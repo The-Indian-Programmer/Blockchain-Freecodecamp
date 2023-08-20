@@ -4,7 +4,7 @@ import contractData from './commonStore'
 
 const rootReducer = {
   auth: Auth,
-  contractData: contractData
+  contractData
 
 }
 
