@@ -16,6 +16,7 @@ describe("BasicNFT Contract", function () {
   it("Should deploy with the correct name and symbol", async function () {
     const name = await basicNFT.name();
     const symbol = await basicNFT.symbol();
+
     assert(name, "BasicNFT");
     assert(symbol, "BNFT");
   });
@@ -32,7 +33,7 @@ describe("BasicNFT Contract", function () {
     const tokenId = 0; // Assuming the first token is minted
     const expectedTokenURI = "ipfs://bafybeig37ioir76s7mg5oobetncojcm3c3hxasyd4rvid4jqhy4gkaheg4/?filename=0-PUG.json";
 
-    const tokenURI = await basicNFT.getTokenURI(tokenId);
+    const tokenURI = await basicNFT.tokenURI(tokenId);
 
     expect(tokenURI).to.equal(expectedTokenURI);
   });
