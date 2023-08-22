@@ -1,11 +1,3 @@
-/* 
-1. Entre the raffle by paying some amount 
-    a. 1 ticket = 0.01 ETH
-    
-
-2. Pick a winner
-3. Winner to be selected every minutes (Automatically by chainlink) 
-*/
 
 // SPDX-License-Identifier: MIT
 
@@ -13,20 +5,29 @@ pragma solidity ^0.8.7;
 
 import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
-import "@chainlink/contracts/src/v0.8/interfaces/KeeperCompatibleInterface.sol";
+import "@chainlink/contracts/src/v0.8/interfaces/AutomationCompatibleInterface.sol";
+import "hardhat/console.sol";
 
 error Raffle_NotEnoughFee();
 error Raffle_AmountSendFailedToRecentWinner();
 error Raffle_NotOpen();
 error Raffle_NotUpKeepNeeded(uint256 balance, uint256 participants, bool isOpen, uint256 lastTimeStamp);
 
-contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
+contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
     /* Type Declaration */
     enum RaffleState {
         OPEN,
         CALCULATING
     }
+/* 
+1. Entre the raffle by paying some amount 
+    a. 1 ticket = 0.01 ETH
+    b. 1 person can buy 1 ticket 
+    
 
+2. Pick a winner
+3. Winner to be selected every minutes (Automatically by chainlink) 
+*/
     /* State Variables */
     uint256 private immutable i_enteraneFee;
     address payable[] private i_participants;
@@ -46,7 +47,7 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
     /* Events */
     event Raffle_Entered(address indexed _from, uint256 _amount);
     event Raffle_RequestedRandomWinner(uint256 indexed requestId);
-    event Raffle_PickedRandomWinner(address indexed _winner, uint256 _amount);
+    event Raffle_PickedRandomWinner(address indexed recentWinner, uint256 _amount);
 
     constructor(
         address vrfCoordinatorV2,
@@ -83,7 +84,7 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
 
     function checkUpkeep(
         bytes memory /* checkData */
-    ) public override view returns  (bool upkeepNeeded, bytes memory /* performData */) {
+    ) public view override returns  (bool upkeepNeeded, bytes memory /* performData */) {
         // upkeepNeeded = true;
         // performData = checkData;
         bool isOpen = (s_raffleState == RaffleState.OPEN);
@@ -111,20 +112,24 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
             i_subscriptionId,
             REQUEST_CONFIRMATIONS,
             i_callbackGasLimit,
-            NUM_WORDS //
+            NUM_WORDS 
         );
-        s_raffleState = RaffleState.OPEN;
-        i_participants = new address payable[](0);
         emit Raffle_RequestedRandomWinner(requestId);
     }
 
     // fulfillRandomness function
-    function fulfillRandomWords(uint256 /* requestID */, uint256[] memory randomWords) internal override {
+    function fulfillRandomWords(
+        uint256, /* requestId */
+        uint256[] memory randomWords
+    ) internal override {
+
         uint256 randomNum = randomWords[0];
         uint256 winnerIndex = randomNum % i_participants.length;
         address payable recentWinner = i_participants[winnerIndex];
         s_recentWinner = recentWinner;
         s_lastTimeStamp = block.timestamp;
+        s_raffleState = RaffleState.OPEN;
+        i_participants = new address payable[](0);
 
 
         (bool success, ) = recentWinner.call{value: address(this).balance}("");
@@ -187,4 +192,29 @@ contract Raffle is VRFConsumerBaseV2, KeeperCompatibleInterface {
     function getNumWords() external pure returns (uint32) {
         return NUM_WORDS;
     } 
+
+    // function to get next time trigger
+    function getNextTimeTrigger() external view returns (uint256) {
+        return s_lastTimeStamp + i_timeInterval;
+    }
+
+    // function to get the subscription id
+    function getSubscriptionId() external view returns (uint64) {
+        return i_subscriptionId;
+    }
+
+    // function to get the callback gas limit
+    function getCallbackGasLimit() external view returns (uint32) {
+        return i_callbackGasLimit;
+    }
+
+    // function to get the gan lane
+    function getGanLane() external view returns (bytes32) {
+        return i_ganLane;
+    }
+
+    // function to get the vrf coordinator
+    function getVrfCoordinator() external view returns (address) {
+        return address(i_vrfCoordinatorV2);
+    }
 }

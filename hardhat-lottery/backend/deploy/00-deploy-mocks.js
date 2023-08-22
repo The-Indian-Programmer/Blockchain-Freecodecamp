@@ -17,10 +17,11 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
         console.log("Local network detected, Skipping raffle deployment on a development network");
 
         
-        await deploy("VrfCoordinatorV2MockConract", {
+       const VrfCoordinatorV2Mock = await deploy("VRFCoordinatorV2Mock", {
             from: deployer,
             log: true,
             args: args,
+            waitConfirmations: 1
         });
         
         console.log("VrfCoordinatorV2Mock deployed to: ", VrfCoordinatorV2Mock.address);

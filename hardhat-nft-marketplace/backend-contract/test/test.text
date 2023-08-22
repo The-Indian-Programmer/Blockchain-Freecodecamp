@@ -1,0 +1,58 @@
+Listing an NFT:
+    Description: Test listing an NFT for sale.
+    Steps:
+        Call the listNFTItem function with valid parameters.
+        Check the emitted event to ensure correctness.
+        Expected Result: NFT should be successfully listed with the specified price.
+
+
+Buying an NFT:
+    Description: Test buying an NFT listed on the marketplace.
+    Steps:
+        List an NFT using the listNFTItem function.
+        Call the buyNFTItem function with sufficient ETH.
+        Check the emitted event to ensure correctness.
+        Expected Result: Buyer should successfully acquire the NFT and the seller's balance should increase.
+
+
+Canceling an NFT Listing:
+    Description: Test canceling a listed NFT.
+    Steps:
+        List an NFT using the listNFTItem function.
+        Call the cancelNFTItem function for the listed NFT.
+        Check the emitted event to ensure correctness.
+        Expected Result: Listing for the NFT should be canceled and removed from the marketplace.
+
+
+Updating NFT Listing:
+    Description: Test updating the price of a listed NFT.
+    Steps:
+        List an NFT using the listNFTItem function.
+        Call the updateNFTItem function with a new price.
+        Check the emitted event to ensure correctness.
+        Expected Result: The price of the listed NFT should be updated.
+
+
+Withdrawing Amount:
+    Description: Test withdrawing the accumulated ETH balance by a seller.
+    Steps:
+        List an NFT using the listNFTItem function.
+        Another account buys the NFT using the buyNFTItem function.
+        The seller calls the withDrawAmount function.
+        Check the emitted event to ensure correctness.
+        Expected Result: The seller should be able to withdraw the ETH balance.
+
+
+Get NFT Listing Details:
+    Description: Test retrieving various details about a listed NFT.
+    Steps:
+        List an NFT using the listNFTItem function.
+        Call the appropriate getter functions (getListing, getListingPrice, getListingSeller) to retrieve the details.
+        Expected Result: The retrieved details should match the listing details.
+
+
+Edge Cases:
+    Description: Test various edge cases, such as trying to list an NFT that's already listed, trying to buy an NFT with insufficient ETH, trying to update a non-listed NFT, trying to withdraw when the balance is zero, etc.
+    Steps:
+        Execute scenarios where the contract might revert due to edge cases.
+        Expected Result: The contract should handle edge cases gracefully and emit appropriate error messages.

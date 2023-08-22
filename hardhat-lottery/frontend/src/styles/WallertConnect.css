@@ -1,0 +1,40 @@
+.modal-slide-enter-active {
+    transition: transform 0.3s ease-out;
+  }
+  
+  .modal-slide-enter-from {
+    transform: translateX(100%);
+  }
+  
+  .modal-slide-enter-to {
+    transform: translateX(0);
+  }
+  
+  .modal-slide-leave-active {
+    transition: transform 0.3s ease-in;
+  }
+  
+  .modal-slide-leave-to {
+    transform: translateX(100%);
+  }
+  .walleticon{
+    height: 26px !important;
+    width: 26px !important;
+    margin-right: 15px !important;
+  }
+  
+  .walleticon img {
+    width: 20px; /* You can adjust the icon size as needed */
+    height: 20px;
+  }
+  
+  .flex:hover {
+  }
+  
+  .flex:hover span {
+    
+  }
+  
+  .flex:hover span.absolute {
+    transform: translateX(0); /* Animate the line from the right on hover */
+  }
