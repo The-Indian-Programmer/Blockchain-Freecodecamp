@@ -23,9 +23,6 @@ error NftMarketPlace__WithDrawFailed(address user, uint256 amount);
 
 
 contract NftMarketPlace is ReentrancyGuard {
-    constructor() {
-       
-    }
 
 
 
@@ -47,7 +44,11 @@ contract NftMarketPlace is ReentrancyGuard {
     /* State Variable */
     mapping(address => mapping(uint256 => Listing)) private s_listings; /* NFTAddress => tokenId => seller */
     mapping(address => uint256) private s_balances; /* seller => balance */
+    address public owner;
 
+    constructor() {
+        owner = msg.sender;
+    }
 
     /* Modifiers */
     modifier NFTListed (address nftAddress, uint256 tokenId, address seller) {
@@ -154,5 +155,15 @@ contract NftMarketPlace is ReentrancyGuard {
     /* Function to get the NFT Listing Seller */
     function getListingSellerBalance(address seller) external view returns (uint256) {
         return s_balances[seller];
+    }
+
+    /* Function to get the NFT MarketPlace Owner */
+    function getOwner() external view returns (address) {
+        return owner;
+    }
+
+    /* Function to get the NFT Marketplace Address */
+    function getMarketPlaceAddress() external view returns (address) {
+        return address(this);
     }
 }
